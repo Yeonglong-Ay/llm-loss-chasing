@@ -1,0 +1,51 @@
+id,name,input_cost,output_cost,api_base
+google.gemma-3-27b-it,Gemma 3 27b,0.0,0.0,http://ollama-gh200.ai-prod.svc.cluster.local:11434/v1
+voyage.voyage-law-2,voyage.voyage-law-2,1.2e-07,0.0,
+voyage.voyage-finance-2,voyage.voyage-finance-2,1.2e-07,0.0,
+voyage.voyage-code-3,voyage.voyage-code-3,1.8e-07,0.0,
+voyage.voyage-3.5,voyage.voyage-3.5,6e-08,0.0,
+openai.text-embedding-3-small,openai.text-embedding-3-small,2.0000000000000002e-07,0.0,
+openai.text-embedding-3-large,openai.text-embedding-3-large,1.3e-07,0.0,
+mistral.mistral-embed,mistral.mistral-embed,1.0000000000000001e-07,0.0,
+mistral.codestral-embed-2505,mistral.codestral-embed-2505,1.5e-07,0.0,
+google_genai.gemini-embedding-001,google_genai.gemini-embedding-001,1.5e-07,0.0,
+meta.llama-3-2-3b-instruct,Llama 3.2 3b,0.0,0.0,http://tgi-llama-3-2-3b-instruct.ai-prod.svc.cluster.local/v1
+qwen.qwen3-vl:32b,Qwen3-VL 32b,0.0,0.0,http://ollama-gh200.ai-prod.svc.cluster.local:11434/v1
+google.gemma-4-31B-it,Gemma 4 31b,0.0,0.0,http://sglang-gemma4.ai-prod.svc.cluster.local:8000/v1
+zai-org.glm-5.3,GLM 5.3,0.0,0.0,https://evergreenai-3.dartmouth.edu:8000/v1
+openai.gpt-oss-120b,GPT-OSS 120b,0.0,0.0,http://vllm-gpt-oss-120b.ai-prod.svc.cluster.local:8000/v1
+qwen.qwen3.5-122b,Qwen3.5 122b,0.0,0.0,http://vllm-qwen35.ai-prod.svc.cluster.local:8000/v1
+meta.llama-3.2-11b-vision-instruct,Llama 3.2 11b,0.0,0.0,http://vllm-llama-3-2-11b-vision-instruct.ai-prod.svc.cluster.local/v1
+openai.gpt-6-luna,GPT-6 Luna,1e-07,5e-07,
+anthropic.claude-haiku-5-5,Claude Haiku 5.5,1e-07,5e-07,
+openai.gpt-5.6-luna,GPT-5.6 Luna,2e-07,1.2e-06,
+mistral.mistral-large-2512,Mistral Large 3,5e-07,1.5e-06,
+vertex_ai.gemini-3.7-flash,Gemini 3.7 Flash,7.5e-07,3.75e-06,
+vertex_ai.gemini-3.8-flash,Gemini 3.8 Flash,7.5e-07,3.75e-06,
+openai.gpt-5.4-mini-2026-03-17,GPT 5.4 Mini 2026-03-17,7.5e-07,4.5e-06,
+anthropic.claude-haiku-4-5-20251001,Claude Haiku 4.5 2025-10-01,1e-06,5e-06,
+vertex_ai.gemini-3.5-flash,Gemini 3.5 Flash,1.5e-06,9e-06,
+openai.gpt-6-sol,GPT-6 Sol,2e-06,1e-05,
+vertex_ai.gemini-2.5-pro,Gemini 2.5 Pro,1.25e-06,1e-05,
+anthropic.claude-sonnet-5-5,Claude Sonnet 5.5,2e-06,1e-05,
+anthropic.claude-sonnet-5,Claude Sonnet 5,2e-06,1e-05,
+openai.gpt-6.1-sol,GPT-6.1 Sol,2e-06,1e-05,
+vertex_ai.gemini-3.1-pro-preview,Gemini 3.1 Pro Preview,2e-06,1.2e-05,
+openai.gpt-5.6-terra,GPT-5.6 Terra,2e-06,1.2e-05,
+openai.gpt-5.3-chat-latest,GPT 5.3 Instant,1.75e-06,1.4e-05,
+openai.gpt-5.4-2026-03-05,GPT 5.4 2026-03-05,2.5e-06,1.5e-05,
+anthropic.claude-sonnet-4-6,Claude Sonnet 4.6,3e-06,1.5e-05,
+anthropic.claude-sonnet-4-5-20250929,Claude Sonnet 4.5 2025-09-29,3e-06,1.5e-05,
+anthropic.claude-opus-5-5,Claude Opus 5.5,4e-06,2e-05,
+openai.gpt-5.6-sol,GPT-5.6 Sol,4e-06,2e-05,
+anthropic.claude-opus-4-7,Claude Opus 4.7,5e-06,2.5e-05,
+anthropic.claude-opus-4-8,Claude Opus 4.8,5e-06,2.5e-05,
+anthropic.claude-opus-5,Claude Opus 5,5e-06,2.5e-05,
+openai.gpt-5.5-2026-04-23,GPT-5.5-2026-04-23,5e-06,3e-05,
+openai.gpt-6-astra,GPT-6 Astra,1e-05,5e-05,
+anthropic.claude-fable-5-1,Claude Fable 5.1,1e-05,5e-05,
+anthropic.claude-fable-5,Claude Fable 5,1e-05,5e-05,
+baai.bge-large-en-v1-5,baai.bge-large-en-v1-5,,,http://tei-bge-large-en-v1-5.ai-prod.svc.cluster.local/v1
+baai.bge-m3,baai.bge-m3,,,http://tei-bge-m3.ai-prod.svc.cluster.local/v1
+meta.codellama-13b-instruct-hf,CodeLlama 13b Instruct HF,,,http://tgi-codellama-13b-instruct-hf.ai-prod/v1
+hop-bo-patron-help-bot,Hop BO Patron Help Bot,,,
