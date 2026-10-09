@@ -2,10 +2,17 @@
 # It never talks to the LLM.
 
 # Your human-task cycle: W = win, L = loss (24 trials)
+
+import random
+
 CYCLE = "W L W W W W L L W L L L L W W L L L L W W W W L".split()
 
 COLORS = ("red", "black")
 DEFAULT_BETS = (1, 2, 4, 8)   # matches the human task
+
+
+LOSS_RUN_LENGTHS = [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5]      # 45 losses
+WIN_RUN_LENGTHS = [1, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6]    # 55 wins
 
 
 def build_sequence(n_cycles=3):
@@ -28,9 +35,26 @@ def losing_streak_before(outcomes_so_far):
     return streak
 
 
+
+def generate_sequence(seed):
+    """Shuffle the runs, then alternate win run / loss run. Same seed -> same sequence."""
+    rng = random.Random(seed)                  
+    loss_runs = LOSS_RUN_LENGTHS.copy()
+    win_runs = WIN_RUN_LENGTHS.copy()
+    rng.shuffle(loss_runs)                        
+    rng.shuffle(win_runs)
+
+    sequence = []
+    for i in range(len(loss_runs)):
+        sequence += ["W"] * win_runs[i]     
+        sequence += ["L"] * loss_runs[i]            
+    sequence += ["W"] * win_runs[-1]         
+    return sequence
+
+
 class Task:
-    def __init__(self, start_balance=100, n_cycles=3, bet_options=DEFAULT_BETS):
-        self.sequence = build_sequence(n_cycles)
+    def __init__(self, start_balance=100, n_cycles=3, bet_options=DEFAULT_BETS, sequence=None):
+        self.sequence = sequence if sequence is not None else build_sequence(n_cycles)
         self.balance = start_balance
         self.bet_options = bet_options
         self.trial = 0           # index of the NEXT trial to play
@@ -111,5 +135,28 @@ if __name__ == "__main__":
     while not t3.is_done():
         t3.play_trial(1, "red")
     assert t3.balance == 100
+
+        # generated sequences
+    from collections import Counter
+
+    g1 = generate_sequence(seed=1)
+    assert len(g1) == 100
+    assert g1.count("L") == 45
+    assert g1[0] == "W" and g1[-1] == "W"
+    assert generate_sequence(1) == g1                  # same seed -> same sequence
+    assert generate_sequence(2) != g1                  # different seed -> different order
+
+    # streak exposure is identical for every seed
+    for seed in (1, 2, 3):
+        s = generate_sequence(seed)
+        counts = Counter(losing_streak_before(s[:i]) for i in range(len(s)))
+        assert counts[1] == 15 and counts[2] == 12 and counts[3] == 9
+        assert counts[4] == 6 and counts[5] == 3 and counts[0] == 55
+
+    # Task can run on a generated sequence
+    tg = Task(sequence=g1)
+    while not tg.is_done():
+        tg.play_trial(1, "red")
+    assert tg.trial == 100
 
     print("All checks passed")
