@@ -4,11 +4,13 @@ import csv
 import os
 
 COLUMNS = [
-    "model", "condition", "session", "seed", "prompt_version", "temperature", "timestamp",
+    "model", "condition", "session", "seed", "prompt_version", "temperature", "max_tokens",
+    "timestamp",
     "trial", "streak_before", "bet", "predicted", "shown", "outcome",
     "correct", "balance_after",
     "n_attempts", "parse_failed",
-    "prompt_tokens", "completion_tokens", "latency_s", "raw_reply",
+    "prompt_tokens", "completion_tokens", "latency_s",
+    "raw_reply", "reasoning", "error", "finish_reason",
 ]
 
 
@@ -16,17 +18,18 @@ def make_filepath(model, condition, session, prompt_version, folder="data"):
     safe_model = model.replace("/", "_").replace(":", "_")
     return os.path.join(folder, f"{safe_model}__{condition}__{prompt_version}__s{session:02d}.csv")
 
+
 class Recorder:
     def __init__(self, filepath):
         self.filepath = filepath
-        with open(self.filepath, "w", newline="") as f:          
+        with open(self.filepath, "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=COLUMNS)
-            writer.writeheader()                                           
+            writer.writeheader()
 
     def write_row(self, row):
-        with open(self.filepath, "a", newline="") as f:          
-            writer = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore")   
-            writer.writerow(row)                                        
+        with open(self.filepath, "a", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore")
+            writer.writerow(row)
 
 
 if __name__ == "__main__":
