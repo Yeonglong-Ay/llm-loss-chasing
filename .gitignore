@@ -5,3 +5,6 @@ __pycache__/
 .DS_Store
 logs/
 data_excluded/
+data/
+results/
+data_ft/

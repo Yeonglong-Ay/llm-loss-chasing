@@ -93,9 +93,9 @@ def run_session(model, condition, session, prompt_version):
     return "ok"
 
 
-def run_model(model, versions):
+def run_model(model, versions, n_sessions):
     for prompt_version in versions:
-        for condition, n in N_SESSIONS.items():
+        for condition, n in n_sessions.items():
             for session in range(1, n + 1):
                 status = run_session(model, condition, session, prompt_version)
                 if status == "api_error":
@@ -109,7 +109,10 @@ if __name__ == "__main__":
     parser.add_argument("--models", nargs="+", default=MODELS)
     parser.add_argument("--versions", nargs="+", default=VERSIONS,
                         choices=list(PROMPT_VERSIONS))
+    parser.add_argument("--anchor-sessions", type=int, default=N_SESSIONS["anchor"])
+    parser.add_argument("--generated-sessions", type=int, default=N_SESSIONS["generated"])
     args = parser.parse_args()
 
+    n_sessions = {"anchor": args.anchor_sessions, "generated": args.generated_sessions}
     for model in args.models:
-        run_model(model, args.versions)
+        run_model(model, args.versions, n_sessions)

@@ -55,5 +55,5 @@ echo "Model: $MODEL  Host: $(hostname)  Start: $(date)"
 # Stop early if this node can't reach the API
 python src/net_check.py || { echo "Network check failed on $(hostname)"; exit 1; }
 
-python -u src/runner.py --models "$MODEL"
+python -u src/runner.py --models "$MODEL" "$@"
 echo "End: $(date)"
