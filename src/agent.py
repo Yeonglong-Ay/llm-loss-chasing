@@ -6,7 +6,7 @@ import time
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from prompt_builder import build_prompt, PROMPT_VERSION
+from prompt_builder import build_prompt
 from response_parser import parse_decision
 
 load_dotenv()
@@ -27,9 +27,10 @@ def get_reasoning(message):
     return str(text)[:REASONING_CHARS] if text else None
 
 
-def get_decision(state, model, bet_options, temperature=1.0, max_tokens=4000):
+def get_decision(state, model, bet_options, prompt_version,
+                 temperature=1.0, max_tokens=4000):
     """Ask the model for one decision. Retry up to MAX_ATTEMPTS with the SAME prompt."""
-    prompt = build_prompt(state)
+    prompt = build_prompt(state, prompt_version)
     last_error = None
     last_finish = None
     reasoning = None
@@ -58,7 +59,7 @@ def get_decision(state, model, bet_options, temperature=1.0, max_tokens=4000):
                 "parse_failed": False,
                 "raw_reply": text,
                 "reasoning": reasoning,
-                "prompt_version": PROMPT_VERSION,
+                "prompt_version": prompt_version,
                 "prompt_tokens": response.usage.prompt_tokens,
                 "completion_tokens": response.usage.completion_tokens,
                 "latency_s": round(latency, 3),
@@ -74,7 +75,7 @@ def get_decision(state, model, bet_options, temperature=1.0, max_tokens=4000):
         "parse_failed": True,
         "raw_reply": text,
         "reasoning": reasoning,
-        "prompt_version": PROMPT_VERSION,
+        "prompt_version": prompt_version,
         "error": str(last_error),
         "finish_reason": last_finish,
     }
