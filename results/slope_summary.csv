@@ -1,0 +1,6 @@
+model,n_sessions,mean_slope,sd_slope,t,p,share_at_max_bet
+gemma-3-27b-it,1,0.059,,,,0.972
+gemma-4-31B-it,10,0.005,0.068,0.221,0.83,0.961
+glm-5.3,1,-0.257,,,,0.556
+gpt-oss-120b,10,-0.137,0.204,-2.13,0.062,0.896
+llama-3.2-11b-vision-instruct,10,-0.154,0.197,-2.481,0.035,0.451
